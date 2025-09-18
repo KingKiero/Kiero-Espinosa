@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KIERO ESPINOSA - Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap');
+        body { font-family: 'Crimson Text', serif; }
+        h1, h2, h3, .font-display { font-family: 'Playfair Display', serif; }
+        .gradient-bg { background: linear-gradient(135deg, #fce7f3 0%, #f9a8d4 50%, #ec4899 100%); }
+        .card-hover { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .card-hover:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        .skill-bar { transition: width 1s ease-in-out; }
+        .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+        .animated-name {
+            background: linear-gradient(45deg, #ec4899, #f472b6, #fb7185, #ec4899);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientShift 4s ease-in-out infinite, letterFloat 3s ease-in-out infinite;
+        }
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        @keyframes letterFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-3px); }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/90 backdrop-blur-sm z-50 shadow-sm">
+        <div class="max-w-6xl mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="text-2xl font-bold text-gray-800 font-display">KIERO ESPINOSA</div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-gray-600 hover:text-pink-600 transition-colors">Home</a>
+                    <a href="#about" class="text-gray-600 hover:text-pink-600 transition-colors">About</a>
+                    <a href="#projects" class="text-gray-600 hover:text-pink-600 transition-colors">Projects</a>
+                    <a href="#skills" class="text-gray-600 hover:text-pink-600 transition-colors">Skills</a>
+                    <a href="#contact" class="text-gray-600 hover:text-pink-600 transition-colors">Contact</a>
+                </div>
+                <button id="mobile-menu-btn" class="md:hidden text-gray-600">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
+                <a href="#home" class="block py-2 text-gray-600 hover:text-pink-600">Home</a>
+                <a href="#about" class="block py-2 text-gray-600 hover:text-pink-600">About</a>
+                <a href="#projects" class="block py-2 text-gray-600 hover:text-pink-600">Projects</a>
+                <a href="#skills" class="block py-2 text-gray-600 hover:text-pink-600">Skills</a>
+                <a href="#contact" class="block py-2 text-gray-600 hover:text-pink-600">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="gradient-bg min-h-screen flex items-center justify-center text-gray-800">
+        <div class="text-center px-6 fade-in">
+            <div class="w-32 h-32 mx-auto mb-8 rounded-full bg-white/20 flex items-center justify-center text-6xl cursor-pointer hover:bg-white/30 transition-colors" id="profile-pic" title="Click to change profile picture">
+                👨‍🎨
+            </div>
+            <div id="profile-selector" class="hidden fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+                <div class="bg-white rounded-2xl p-8 max-w-md mx-4">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6 font-display text-center">Choose Your Profile Picture</h3>
+                    <div class="grid grid-cols-4 gap-4 mb-6">
+                        <div class="w-16 h-16 rounded-full bg-pink-100 flex items-center justify-center text-2xl cursor-pointer hover:bg-pink-200 transition-colors profile-option" data-emoji="👨‍🎨">👨‍🎨</div>
+                        <div class="w-16 h-16 rounded-full bg-rose-100 flex items-center justify-center text-2xl cursor-pointer hover:bg-rose-200 transition-colors profile-option" data-emoji="👩‍🎨">👩‍🎨</div>
+                        <div class="w-16 h-16 rounded-full bg-red-100 flex items-center justify-center text-2xl cursor-pointer hover:bg-red-200 transition-colors profile-option" data-emoji="🎨">🎨</div>
+                        <div class="w-16 h-16 rounded-full bg-pink-100 flex items-center justify-center text-2xl cursor-pointer hover:bg-pink-200 transition-colors profile-option" data-emoji="✨">✨</div>
+                        <div class="w-16 h-16 rounded-full bg-rose-100 flex items-center justify-center text-2xl cursor-pointer hover:bg-rose-200 transition-colors profile-option" data-emoji="🌸">🌸</div>
+                        <div class="w-16 h-16 rounded-full bg-red-100 flex items-center justify-center text-2xl cursor-pointer hover:bg-red-200 transition-colors profile-option" data-emoji="🖌️">🖌️</div>
+                        <div class="w-16 h-16 rounded-full bg-pink-100 flex items-center justify-center text-2xl cursor-pointer hover:bg-pink-200 transition-colors profile-option" data-emoji="🎭">🎭</div>
+                        <div class="w-16 h-16 rounded-full bg-rose-100 flex items-center justify-center text-2xl cursor-pointer hover:bg-rose-200 transition-colors profile-option" data-emoji="🦋">🦋</div>
+                        <div class="w-16 h-16 rounded-full bg-red-100 flex items-center justify-center text-2xl cursor-pointer hover:bg-red-200 transition-colors profile-option" data-emoji="🌺">🌺</div>
+                        <div class="w-16 h-16 rounded-full bg-pink-100 flex items-center justify-center text-2xl cursor-pointer hover:bg-pink-200 transition-colors profile-option" data-emoji="🎪">🎪</div>
+                        <div class="w-16 h-16 rounded-full bg-rose-100 flex items-center justify-center text-2xl cursor-pointer hover:bg-rose-200 transition-colors profile-option" data-emoji="🌙">🌙</div>
+                        <div class="w-16 h-16 rounded-full bg-red-100 flex items-center justify-center text-2xl cursor-pointer hover:bg-red-200 transition-colors profile-option" data-emoji="⭐">⭐</div>
+                    </div>
+                    <div class="flex space-x-4">
+                        <button id="cancel-selection" class="flex-1 bg-gray-200 text-gray-800 py-2 px-4 rounded-lg hover:bg-gray-300 transition-colors font-display">Cancel</button>
+                        <button id="confirm-selection" class="flex-1 bg-pink-600 text-white py-2 px-4 rounded-lg hover:bg-pink-700 transition-colors font-display">Confirm</button>
+                    </div>
+                </div>
+            </div>
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 font-display animated-name">KIERO ESPINOSA</h1>
+            <p class="text-xl md:text-2xl mb-8 text-gray-700 font-display italic">Graphic Designer & Illustrator</p>
+            <div class="space-x-4">
+                <a href="#projects" class="bg-white text-pink-600 px-8 py-3 rounded-full font-semibold hover:bg-pink-50 transition-colors font-display">View My Work</a>
+                <a href="#contact" class="border-2 border-gray-800 text-gray-800 px-8 py-3 rounded-full font-semibold hover:bg-gray-800 hover:text-white transition-colors font-display">Get In Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4 font-display">About Me</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">I'm a passionate digital artist with 5+ years of experience bringing imagination to life through visual storytelling. I love transforming ideas into captivating illustrations and memorable brand experiences.</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="fade-in">
+                    <div class="bg-gradient-to-br from-pink-100 to-rose-100 rounded-2xl p-8 text-center">
+                        <div class="text-8xl mb-4">🌸</div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4 font-display">Creativity Driven</h3>
+                        <p class="text-gray-600">Always exploring new artistic techniques and pushing the boundaries of visual expression.</p>
+                    </div>
+                </div>
+                <div class="fade-in">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6 font-display">My Journey</h3>
+                    <p class="text-gray-600 mb-4">Started as a curious artist who loved bringing stories to life through drawings. Today, I help brands and individuals express their vision through stunning digital artwork and illustrations.</p>
+                    <p class="text-gray-600 mb-6">When I'm not creating art, you'll find me sketching in nature, visiting art galleries, or experimenting with new digital brushes and techniques.</p>
+                    <div class="flex space-x-4">
+                        <span class="bg-pink-100 text-pink-800 px-3 py-1 rounded-full text-sm">Visual Storyteller</span>
+                        <span class="bg-rose-100 text-rose-800 px-3 py-1 rounded-full text-sm">Detail Oriented</span>
+                        <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm">Creative Visionary</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4 font-display">Featured Projects</h2>
+                <p class="text-xl text-gray-600">Here are some of my recent works that I'm proud of</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover fade-in">
+                    <div class="h-48 bg-gradient-to-br from-pink-400 to-rose-500 flex items-center justify-center text-white text-6xl">
+                        🌸
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2 font-display">Sakura Illustration Series</h3>
+                        <p class="text-gray-600 mb-4">A collection of delicate cherry blossom illustrations for spring campaigns</p>
+                        <div class="flex space-x-2 mb-4">
+                            <span class="bg-pink-100 text-pink-800 px-2 py-1 rounded text-xs">Digital Art</span>
+                            <span class="bg-rose-100 text-rose-800 px-2 py-1 rounded text-xs">Illustration</span>
+                            <span class="bg-red-100 text-red-800 px-2 py-1 rounded text-xs">Procreate</span>
+                        </div>
+                        <button class="text-pink-600 hover:text-pink-800 font-semibold">View Artwork →</button>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover fade-in">
+                    <div class="h-48 bg-gradient-to-br from-rose-400 to-red-500 flex items-center justify-center text-white text-6xl">
+                        🏷️
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2 font-display">Brand Identity Design</h3>
+                        <p class="text-gray-600 mb-4">Complete visual identity for a boutique coffee shop including logo and packaging</p>
+                        <div class="flex space-x-2 mb-4">
+                            <span class="bg-pink-100 text-pink-800 px-2 py-1 rounded text-xs">Branding</span>
+                            <span class="bg-rose-100 text-rose-800 px-2 py-1 rounded text-xs">Logo Design</span>
+                            <span class="bg-red-100 text-red-800 px-2 py-1 rounded text-xs">Packaging</span>
+                        </div>
+                        <button class="text-pink-600 hover:text-pink-800 font-semibold">View Artwork →</button>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover fade-in">
+                    <div class="h-48 bg-gradient-to-br from-red-400 to-pink-600 flex items-center justify-center text-white text-6xl">
+                        📚
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2 font-display">Children's Book Illustrations</h3>
+                        <p class="text-gray-600 mb-4">Whimsical character designs and scenes for a fantasy adventure story</p>
+                        <div class="flex space-x-2 mb-4">
+                            <span class="bg-pink-100 text-pink-800 px-2 py-1 rounded text-xs">Character Design</span>
+                            <span class="bg-rose-100 text-rose-800 px-2 py-1 rounded text-xs">Storytelling</span>
+                            <span class="bg-red-100 text-red-800 px-2 py-1 rounded text-xs">Watercolor</span>
+                        </div>
+                        <button class="text-pink-600 hover:text-pink-800 font-semibold">View Artwork →</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4 font-display">Artistic Skills & Expertise</h2>
+                <p class="text-xl text-gray-600">Creative disciplines and design tools I master</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="fade-in">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6 font-display">Creative Skills</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-700 font-medium">Digital Illustration</span>
+                                <span class="text-gray-500">95%</span>
+                            </div>
+                            <div class="bg-gray-200 rounded-full h-2">
+                                <div class="skill-bar bg-pink-600 h-2 rounded-full" style="width: 0%" data-width="95%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-700 font-medium">Brand Identity Design</span>
+                                <span class="text-gray-500">90%</span>
+                            </div>
+                            <div class="bg-gray-200 rounded-full h-2">
+                                <div class="skill-bar bg-rose-600 h-2 rounded-full" style="width: 0%" data-width="90%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-700 font-medium">Typography & Layout</span>
+                                <span class="text-gray-500">85%</span>
+                            </div>
+                            <div class="bg-gray-200 rounded-full h-2">
+                                <div class="skill-bar bg-red-600 h-2 rounded-full" style="width: 0%" data-width="85%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-700 font-medium">Color Theory & Composition</span>
+                                <span class="text-gray-500">88%</span>
+                            </div>
+                            <div class="bg-gray-200 rounded-full h-2">
+                                <div class="skill-bar bg-pink-500 h-2 rounded-full" style="width: 0%" data-width="88%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="fade-in">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6 font-display">Design Tools & Software</h3>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-gray-50 rounded-lg p-4 text-center">
+                            <div class="text-3xl mb-2">🎨</div>
+                            <span class="text-gray-700 font-medium">Adobe Illustrator</span>
+                        </div>
+                        <div class="bg-gray-50 rounded-lg p-4 text-center">
+                            <div class="text-3xl mb-2">🖼️</div>
+                            <span class="text-gray-700 font-medium">Photoshop</span>
+                        </div>
+                        <div class="bg-gray-50 rounded-lg p-4 text-center">
+                            <div class="text-3xl mb-2">📐</div>
+                            <span class="text-gray-700 font-medium">InDesign</span>
+                        </div>
+                        <div class="bg-gray-50 rounded-lg p-4 text-center">
+                            <div class="text-3xl mb-2">✏️</div>
+                            <span class="text-gray-700 font-medium">Procreate</span>
+                        </div>
+                        <div class="bg-gray-50 rounded-lg p-4 text-center">
+                            <div class="text-3xl mb-2">🎯</div>
+                            <span class="text-gray-700 font-medium">Figma</span>
+                        </div>
+                        <div class="bg-gray-50 rounded-lg p-4 text-center">
+                            <div class="text-3xl mb-2">🖌️</div>
+                            <span class="text-gray-700 font-medium">Clip Studio</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 gradient-bg text-gray-800">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <div class="fade-in">
+                <h2 class="text-4xl font-bold mb-4 font-display">Let's Work Together</h2>
+                <p class="text-xl mb-12 text-gray-700">Have a project in mind? I'd love to hear about it!</p>
+                <div class="grid md:grid-cols-3 gap-8 mb-12">
+                    <div class="bg-white/30 rounded-lg p-6">
+                        <div class="text-4xl mb-4">📧</div>
+                        <h3 class="text-xl font-semibold mb-2 font-display">Email</h3>
+                        <p class="text-gray-700">espinosakiero7@gmail.com</p>
+                    </div>
+                    <div class="bg-white/30 rounded-lg p-6">
+                        <div class="text-4xl mb-4">💼</div>
+                        <h3 class="text-xl font-semibold mb-2">LinkedIn</h3>
+                        <p class="text-gray-700">linkedin.com/in/alexjohnson</p>
+                    </div>
+                    <div class="bg-white/30 rounded-lg p-6">
+                        <div class="text-4xl mb-4">🐙</div>
+                        <h3 class="text-xl font-semibold mb-2">GitHub</h3>
+                        <p class="text-gray-700">github.com/alexjohnson</p>
+                    </div>
+                </div>
+                <div class="bg-white/10 rounded-xl p-8 max-w-2xl mx-auto">
+                    <h3 class="text-2xl font-bold mb-6">Send me a message</h3>
+                    <form class="space-y-4">
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <input type="text" placeholder="Your Name" class="w-full px-4 py-3 rounded-lg bg-white/20 border border-white/30 text-white placeholder-white/70 focus:outline-none focus:border-white">
+                            <input type="email" placeholder="Your Email" class="w-full px-4 py-3 rounded-lg bg-white/20 border border-white/30 text-white placeholder-white/70 focus:outline-none focus:border-white">
+                        </div>
+                        <input type="text" placeholder="Subject" class="w-full px-4 py-3 rounded-lg bg-white/20 border border-white/30 text-white placeholder-white/70 focus:outline-none focus:border-white">
+                        <textarea placeholder="Your Message" rows="4" class="w-full px-4 py-3 rounded-lg bg-white/20 border border-white/30 text-white placeholder-white/70 focus:outline-none focus:border-white resize-none"></textarea>
+                        <button type="submit" class="w-full bg-white text-purple-600 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">Send Message</button>
+                    </form>
+                    <p class="text-sm text-white/60 mt-4">Demo form - messages won't be sent</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="max-w-6xl mx-auto px-6 text-center">
+            <p class="text-gray-400">&copy; 2024 KIERO ESPINOSA. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    // Close mobile menu if open
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+
+        // Fade in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Animate skill bars when they come into view
+        const skillObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const skillBars = entry.target.querySelectorAll('.skill-bar');
+                    skillBars.forEach(bar => {
+                        const width = bar.getAttribute('data-width');
+                        setTimeout(() => {
+                            bar.style.width = width;
+                        }, 200);
+                    });
+                }
+            });
+        }, observerOptions);
+
+        const skillsSection = document.getElementById('skills');
+        if (skillsSection) {
+            skillObserver.observe(skillsSection);
+        }
+
+        // Form submission
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! This is a demo form, so your message wasn\'t actually sent.');
+            this.reset();
+        });
+
+        // Project buttons
+        document.querySelectorAll('button').forEach(button => {
+            if (button.textContent.includes('View Project')) {
+                button.addEventListener('click', () => {
+                    alert('This would normally open the project details or live demo!');
+                });
+            }
+        });
+
+        // Profile picture selector functionality
+        const profilePic = document.getElementById('profile-pic');
+        const profileSelector = document.getElementById('profile-selector');
+        const cancelSelection = document.getElementById('cancel-selection');
+        const confirmSelection = document.getElementById('confirm-selection');
+        const profileOptions = document.querySelectorAll('.profile-option');
+        let selectedEmoji = '👨‍🎨';
+        let tempSelectedEmoji = '👨‍🎨';
+
+        profilePic.addEventListener('click', () => {
+            profileSelector.classList.remove('hidden');
+            // Reset selection to current profile pic
+            tempSelectedEmoji = selectedEmoji;
+            updateSelection();
+        });
+
+        cancelSelection.addEventListener('click', () => {
+            profileSelector.classList.add('hidden');
+            tempSelectedEmoji = selectedEmoji;
+            updateSelection();
+        });
+
+        confirmSelection.addEventListener('click', () => {
+            selectedEmoji = tempSelectedEmoji;
+            profilePic.textContent = selectedEmoji;
+            profileSelector.classList.add('hidden');
+        });
+
+        profileOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                tempSelectedEmoji = option.getAttribute('data-emoji');
+                updateSelection();
+            });
+        });
+
+        function updateSelection() {
+            profileOptions.forEach(option => {
+                if (option.getAttribute('data-emoji') === tempSelectedEmoji) {
+                    option.classList.add('ring-4', 'ring-pink-500', 'ring-offset-2');
+                } else {
+                    option.classList.remove('ring-4', 'ring-pink-500', 'ring-offset-2');
+                }
+            });
+        }
+
+        // Close modal when clicking outside
+        profileSelector.addEventListener('click', (e) => {
+            if (e.target === profileSelector) {
+                profileSelector.classList.add('hidden');
+                tempSelectedEmoji = selectedEmoji;
+                updateSelection();
+            }
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'980ea373f2f7b9ef',t:'MTc1ODE3NTM4OS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
